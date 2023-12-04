@@ -25,6 +25,7 @@ class DatasetH5(torch.utils.data.Dataset):
         X = torch.tensor(self.scans[f'sess{ses:02}'][run])
         X = self.normalize_scans(X)
         X = torch.nan_to_num(X)
+        X = X * torch.normal(1, .01, size=X.shape)
         X = X.unsqueeze(0)
         X = X.float().to(self.device)
         y = torch.tensor(self.stimuli[f'sess{ses:02}'][run]).float().to(self.device)
