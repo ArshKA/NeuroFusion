@@ -1,4 +1,4 @@
-from DataLoaderH5 import DatasetH5
+from DataLoader import DatasetH5
 from model import BrainModel
 import torch
 import torch.optim as optim

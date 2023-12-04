@@ -21,7 +21,6 @@ with torch.no_grad(), h5py.File('/scratch/arsh/mri_h5/stimuli/stimuli_data.hdf5'
 
   for subject in os.listdir(stimuli_list_path):
     subject_int = int(subject[-1])
-    if subject_int != 1: continue
     for session in os.listdir(f'{stimuli_list_path}/{subject}'):
       if os.path.isdir(f'{stimuli_list_path}/{subject}/{session}'):
         session_int = int(session[-2:])

@@ -1,6 +1,6 @@
 
 
-from DataLoaderH5 import DatasetH5
+from DataLoader import DatasetH5
 from model import BrainModel
 from diffusion import ImageGenerator
 import torch
