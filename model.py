@@ -6,9 +6,6 @@ from torch import optim
 from torch.nn import functional as F
 
 
-# ***********************************************
-# Encoder and Discriminator has same architecture
-# ***********************************************
 class BrainModel(nn.Module):
     def __init__(self, channel=256, out_class=1):
         super(BrainModel, self).__init__()
