@@ -1,3 +1,3 @@
 # NeuroFussion
 
-Thrown together
+Thrown together, will organize/comment
