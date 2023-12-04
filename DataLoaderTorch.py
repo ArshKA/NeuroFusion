@@ -4,7 +4,7 @@ import random
 import numpy as np
 
 
-class DatasetTorch():
+class Dataset():
     'Characterizes a dataset for PyTorch'
 
     def __init__(self, scan_path, stimuli_path, subject, scan_type, sessions, device='cpu'):

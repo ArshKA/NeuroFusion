@@ -7,10 +7,10 @@ from tqdm import tqdm
 device = 'cuda:3'
 n_epochs = 15
 
-train_data = DatasetH5('/scratch/arsh/mri_h5/scans/mri_data.hdf5', '/scratch/arsh/mri_h5/stimuli/stimuli_data.hdf5', 1, 'D', list(range(1, 14)), device=device)
+train_data = DatasetH5('/scratch/arsh/mri_h5/scans/mri_data.hdf5', '/scratch/arsh/mri_h5/stimuli/stimuli_data.hdf5', 1, 'D', list(range(1, 14)), device=device, norm_path='norm')
 train_generator = torch.utils.data.DataLoader(train_data, batch_size=64, shuffle=True)
 
-test_data = DatasetH5('/scratch/arsh/mri_h5/scans/mri_data.hdf5', '/scratch/arsh/mri_h5/stimuli/stimuli_data.hdf5', 1, 'D', [14, 15], device=device)
+test_data = DatasetH5('/scratch/arsh/mri_h5/scans/mri_data.hdf5', '/scratch/arsh/mri_h5/stimuli/stimuli_data.hdf5', 1, 'D', [14, 15], device=device, norm_path='norm')
 test_generator = torch.utils.data.DataLoader(test_data, batch_size=64, shuffle=True)
 
 mri_model = BrainModel()
@@ -41,5 +41,5 @@ for epoch in range(n_epochs):
             test_loss.append(loss)
         print(f"Epoch {epoch}, Loss {sum(train_loss[-1])/len(train_loss[-1])}, Test Loss {test_loss[-1]}")
 
-torch.save(mri_model.state_dict(), 'basic_model10.pt')
+torch.save(mri_model.state_dict(), 'norm_model.pt')
 

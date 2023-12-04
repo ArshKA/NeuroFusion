@@ -40,12 +40,13 @@ def combine_images(image_list1, image_list2, output_path):
 
 with torch.no_grad():
     mri_model = BrainModel()
-    mri_model.load_state_dict(torch.load('basic_model10.pt'))
+    mri_model.load_state_dict(torch.load('norm_model.pt'))
     mri_model.eval()
     mri_model.to(device)
 
     test_data = DatasetH5('/scratch/arsh/mri_h5/scans/mri_data.hdf5', '/scratch/arsh/mri_h5/stimuli/stimuli_data.hdf5',
-                          1, 'D', [14, 15], device=device)
+                           1, 'D', [14, 15], device=device, norm_path='norm')
+
     test_generator = torch.utils.data.DataLoader(test_data, batch_size=64, shuffle=True)
 
     image_gen = ImageGenerator(device)
@@ -60,13 +61,13 @@ with torch.no_grad():
     print((output[0]-output[1]).sum())
 
 
-    true_images = image_gen.generate(y[10:15]).images
+    true_images = image_gen.generate(y[10:17]).images
 
     print(true_images)
 
     true_images[0].save('generated_images/img5_halftrue.png')
 
-    pred_images = image_gen.generate(output[10:15]).images
+    pred_images = image_gen.generate(output[10:17]).images
 
     print(pred_images)
 
@@ -78,7 +79,7 @@ with torch.no_grad():
 
 
 
-combine_images(true_images, pred_images, 'generated_images/img100.png')
+combine_images(true_images, pred_images, 'generated_images/img104.png')
 
 
 
